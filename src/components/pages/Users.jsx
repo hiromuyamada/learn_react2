@@ -1,6 +1,13 @@
+import React, { useEffect } from "react";
 import styled from "styled-components"
 import { SearchInput } from "../molecules/SearchInput";
 import { UserCard } from "../organisms/user/UserCard";
+import { useLocation } from "react-router-dom";
+import { SecondaryButton } from "../atoms/button/SecondaryButton";
+import { UserContext } from "../../providers/UserProvider";
+import { useContext } from "react";
+import {useRecoilState} from "recoil";
+import { userState } from "../../store/userState";
 
 const users = [...Array(10).keys()].map(((val) => {
     return{
@@ -15,14 +22,19 @@ const users = [...Array(10).keys()].map(((val) => {
         website:"www.com",
       
     }
-}))
+}));
 
 
 export const Users = () => {
+    // const {userInfo,setUserInfo} = useContext(UserContext);
+    const [userInfo,setUserInfo] = useRecoilState(userState);
+    const onClickSwitch = () =>setUserInfo({isAdmin:!userInfo.isAdmin});
     return(
         <SContainer>
             <h2>ユーザー一覧</h2>
             <SearchInput />
+            <br />
+            <SecondaryButton onClick={onClickSwitch}>切り替え</SecondaryButton>
             <SUserArea>
             {users.map((user)=>(
                 <UserCard key={users.id} user={user}/>

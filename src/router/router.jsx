@@ -8,15 +8,15 @@ export const Router = () => {
     return(
         <BrowserRouter>
         <Switch>
+        <Route path="/users">
+                <HeaderOnly>
+                    <Users />
+                </HeaderOnly>
+            </Route>
             <Route exact path="/">
                 <DefaultLayout>
                     <Top />
                 </DefaultLayout>
-            </Route>
-            <Route path="/users">
-                <HeaderOnly>
-                    <Users />
-                </HeaderOnly>
             </Route>
         </Switch>
         </BrowserRouter>

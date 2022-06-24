@@ -5,23 +5,20 @@ import { SecondaryButton } from './components/atoms/button/SecondaryButton';
 import { SearchInput } from './components/molecules/SearchInput';
 import { UserCard } from './components/organisms/user/UserCard';
 import { HeaderOnly } from './components/templates/HeaderOnly';
-// import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { DefaultLayout } from './components/templates/DefaultLayout';
 import { Router } from './router/router';
+import { UserProvider } from './providers/UserProvider';
+import { RecoilRoot } from 'recoil';
 
 
 function App() {
   return (
-    // <BrowserRouter>
-    // <DefaultLayout>
-    //   <PrimaryButton>テスト</PrimaryButton>
-    //   <SecondaryButton>テスト</SecondaryButton>
-    //   <br />
-    //   <SearchInput></SearchInput>
-    //   <UserCard user={user}/>
-    // </DefaultLayout>
-    // </BrowserRouter>
-    <Router />
+    <RecoilRoot>
+      <UserProvider>
+        <Router />
+      </UserProvider>
+    </RecoilRoot>
   );
 }
 
